@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshavardhan - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #e0e0e0;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Portfolio Container */
+.portfolio {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Navbar */
+.navbar {
+  background: rgba(9, 9, 15, 0.95);
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar.expanded {
+  background: rgba(9, 9, 15, 1);
+}
+
+.brand {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-weight: 700;
+  color: #f0f3f3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  padding-left: 1rem;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav-item a {
+  color: #fff;
+  font-weight: 500;
+  margin: 0 clamp(0.5rem, 2vw, 1rem);
+  transition: color 0.3s ease;
+  text-decoration: none;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  padding: 0.5rem 0;
+}
+
+.nav-item a:hover,
+.nav-item a.active {
+  color: #00d4ff;
+}
+
+.navbar-toggler {
+  border-color: #00d4ff;
+  padding: 0.25rem 0.5rem;
+}
+
+.navbar-collapse {
+  transition: all 0.3s ease;
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: clamp(2rem, 5vw, 4rem) 0;
+  background: linear-gradient(45deg, rgba(26, 26, 46, 0.8), rgba(22, 33, 62, 0.8));
+  margin-top: 70px; /* Account for fixed navbar */
+}
+
+.hero-section h1 {
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 2px 2px 10px rgba(0, 212, 255, 0.5);
+  animation: glow 1.5s infinite alternate ease-in-out;
+  
+ 
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 2px 2px 10px rgba(0, 212, 255, 0.5);
+  }
+  50% {
+    text-shadow: 2px 2px 20px rgba(0, 212, 255, 0.8);
+  }
+  100% {
+    text-shadow: 2px 2px 10px rgba(0, 212, 255, 0.5);
+  }
+}
+
+.hero-section h2 {
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  color: #00d4ff;
+  font-weight: 600;
+  min-height: 2.5rem;
+  width: 22ch;
+  font-family: monospace;
+}
+
+.hero-section p {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin: clamp(1rem, 3vw, 1.5rem) 0;
+  color: #b0b0b0;
+}
+
+.hero-section img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #00d4ff;
+  border: none;
+  padding: clamp(0.6rem, 1.5vw, 0.8rem) clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.btn-primary:hover {
+  background: #00b8d9;
+}
+
+.btn-outline-light {
+  border-color: #e0e0e0;
+  color: #e0e0e0;
+  padding: clamp(0.6rem, 1.5vw, 0.8rem) clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.btn-outline-light:hover {
+  background: #e0e0e0;
+  color: #1a1a2e;
+  transform: translateY(-2px);
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: -15px;
+}
+
+.social-links a {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: #e0e0e0;
+  margin: 0 clamp(0.5rem, 1.5vw, 1rem);
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  transform: scale(1.1);
+}
+
+#insta:hover { color: rgb(206, 12, 12); }
+#linkedin:hover { color: #1e37a8; }
+#git:hover { color: rgb(48, 45, 45); }
+#twitter:hover { color: #1e37a8; }
+
+/* Section Styles */
+.section {
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  background: rgba(22, 33, 62, 0.95);
+}
+
+.section:nth-child(even) {
+  background: rgba(26, 26, 46, 0.95);
+}
+
+.section h2 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 2px 2px 10px rgba(0, 212, 255, 0.5);
+  animation: glow 1.5s infinite alternate ease-in-out;
+  text-align: center;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+  position: relative;
+}
+
+.section h2::after {
+  content: '';
+  width: 50px;
+  height: 3px;
+  background: #f1f3f3;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.section p {
+  color: whitesmoke;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+/* Project Card */
+.project-card {
+  position: relative;
+  perspective: 1000px;
+  height: auto;
+  min-height: 400px;
+  margin-bottom: 2rem;
+  padding: 10px;
+  scrollbar-width: 0;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  min-height: 400px;
+}
+
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: #16213e;
+  border-radius: 10px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: clamp(15px, 3vw, 20px);
+}
+
+.card-front img {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-body {
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.card-body h3 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: #00d4ff;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.card-body p {
+  color: #b0b0b0;
+  text-align: center;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+.project-details {
+  list-style: none;
+  color: #e0e0e0;
+  margin: 1rem 0;
+  padding-left: 0;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+.project-details li {
+  margin: 0.5rem 0;
+}
+
+/* Skills */
+.progress {
+  background: #1a1a2e;
+  height: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #00d4ff, #00b8d9);
+}
+
+/* Form */
+.form-control {
+  background: #1a1a2e;
+  border: 1px solid #00d4ff;
+  color: #e0e0e0;
+  margin-bottom: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.form-control:focus {
+  background: #1a1a2e;
+  color: #e0e0e0;
+  border-color: #00b8d9;
+  box-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
+}
+
+/* Footer */
+.footer {
+  padding: clamp(1.5rem, 4vw, 2rem) 0;
+  background: #1a1a2e;
+  text-align: center;
+  /* margin: auto; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer h5 {
+  color: #00d4ff;
+  font-weight: 600;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+
+.footer p {
+  color: #b0b0b0;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  margin-top: 10px;
+}
+.sociallinks a{
+  font-size: clamp(1.5rem, 4vw, 1.5rem);
+  color: #e0e0e0;
+  margin: 0 clamp(0.5rem, 1.5vw, 2rem);
+  transition: all 0.3s ease;
+
+  
+}
+
+/* Media Queries */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: rgba(9, 9, 15, 0.95);
+    padding: 1rem;
+    margin-top: 10rem;
+  
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+   
+  }
+
+  .nav-item {
+    margin: 0.5rem 0;
+    position: relative;
+    top: -80px;
+    
+  }
+
+  .hero-section {
+    text-align: center;
+  }
+
+  .hero-section img {
+    margin-top: 2rem;
+  }
+
+  .social-links {
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  .btn-outline-light {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 3rem 0;
+  }
+
+  .project-card {
+    min-height: 450px;
+  }
+
+  .card-inner {
+    min-height: 450px;
+  }
+}
+
+@media (max-width: 576px) {
+  .project-card {
+    min-height: 400px;
+  }
+
+  .card-inner {
+    min-height: 400px;
+  }
+
+  .card-front img {
+    max-height: 150px;
+  }
+
+  .btn-primary,
+  .btn-outline-light {
+    width: 100%;
+    margin-left: 0;
+  }
+  #one{
+    text-align: justify;
+  }
+}
+
+/* Ensure content doesn't hide behind fixed navbar */
+@media (min-width: 992px) {
+  .navbar.expanded {
+    background: rgba(9, 9, 15, 1);
+    height: 150%;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="portfolio">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <a class="brand" href="#">portfolio</a>
+                <button class="navbar-toggler" type="button" onclick="toggleNav()" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" style="color:white"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home" onclick="closeNav()">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about" onclick="closeNav()">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#skills" onclick="closeNav()">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#projects" onclick="closeNav()">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#education" onclick="closeNav()">Education</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact" onclick="closeNav()">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 data-aos="fade-right">Harshavardhan</h1>
+                        <h2 data-aos="fade-right" data-aos-delay="200" id="typing-text">Full Stack Developer</h2>
+                        <p data-aos="fade-right" data-aos-delay="400">Transforming ideas into digital masterpieces</p>
+                        <div data-aos="fade-up" data-aos-delay="600">
+                            <a href="#contact" class="btn btn-primary me-3">Hire Me</a>
+                        </div>
+                        <div class="social-links" data-aos="fade-up" data-aos-delay="800">
+                            <a id="linkedin" href="https://linkedin.com"><i class="fab fa-linkedin"></i></a>
+                            <a id="git" href="https://github.com/Thallapally1461"><i class="fab fa-github"></i></a>
+                            <a id="twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+                            <a id="insta" href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-center" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="./web.png" alt="Harshavardhan">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section" data-aos="fade-up">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="text-center">
+                    <p id="one">
+                        Aspiring Full Stack MERN Developer targeting roles with esteemed organizations to enhance
+                        knowledge and drive career growth. Proficient in the MERN stack (MongoDB, Express.js, React, Node.js), with
+                        a solid background in building scalable web applications. Demonstrates ability to efficiently manage and deliver
+                        projects from initial planning to deployment and maintenance. Committed to staying current with industry trends
+                        and technologies, continuously enhancing skills to provide innovative solutions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section" data-aos="fade-up">
+            <div class="container">
+                <h2>Technical Skills</h2>
+                <div class="row g-4">
+                    <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="200">
+                        <div class="text-center" style="background: white; padding: 12px; border-radius: 25px;">
+                            <img src="https://img.icons8.com/?size=80&id=wPohyHO_qO1a&format=png" alt="React.js" class="mb-3" style="width: 50px;">
+                            <h4>React.js</h4>
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" style="width: 90%">90%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="200">
+                        <div class="text-center" style="background: white; padding: 12px; border-radius: 25px;">
+                            <img src="https://img.icons8.com/?size=48&id=54087&format=png" alt="Node.js" class="mb-3" style="width: 50px;">
+                            <h4>Node.js</h4>
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" style="width: 85%">85%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="200">
+                        <div class="text-center" style="background: white; padding: 12px; border-radius: 25px;">
+                            <img src="https://img.icons8.com/?size=64&id=2ZOaTclOqD4q&format=png" alt="Express.js" class="mb-3" style="width: 50px;">
+                            <h4>Express.js</h4>
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" style="width: 80%">80%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="200">
+                        <div class="text-center" style="background: white; padding: 12px; border-radius: 25px;">
+                            <img src="https://img.icons8.com/?size=48&id=bosfpvRzNOG8&format=png" alt="MongoDB" class="mb-3" style="width: 50px;">
+                            <h4>MongoDB</h4>
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" style="width: 88%">88%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section" data-aos="fade-up">
+            <div class="container">
+                <h2>Personal Projects</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="project-card" onclick="flipCard(this)">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <img src="https://i.workana.com/wp-content/uploads/2019/11/ecommerce-workana-glosario.jpg" alt="Trendify Shopeassy E-commerce Platform" class="img-fluid">
+                                    <div class="card-body">
+                                        <h3>Trendify Shopeassy E-commerce Platform</h3>
+                                        <p>An eCommerce platform allows individuals to buy services online.</p>
+                                        <button class="btn btn-outline-light">View Details</button>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="card-body">
+                                        <h3>Trendify Shopeassy E-commerce Platform</h3>
+                                        <ul class="project-details">
+                                            <li><strong>Tech Stack:</strong> React, Node.js,Express MongoDB</li>
+                                            <li><strong>Duration:</strong> 1 months</li>
+                                            <li><strong>Features:</strong> Payment integration, User auth, Product management</li>
+                                        </ul>
+                                        <p style="text-align:justify">Trendify Shopeassy is a modern eCommerce app offering a seamless shopping experience for customers and admins. Customers can browse, manage carts, while admins can efficiently manage products, orders, and user accounts. Features include secure user authentication with OTP verification, JWT sessions. The backend uses Express.js and MongoDB for efficient data management.</p>
+                                        <a href="" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Visit Project</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="project-card" onclick="flipCard(this)">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <img src="https://img.freepik.com/free-vector/hand-drawn-remote-recruitment-illustration_52683-143689.jpg?ga=GA1.1.353791700.1739702045&semt=ais_hybrid" alt="Smart-Hire Job Portal" class="img-fluid">
+                                    <div class="card-body">
+                                        <h3>Smart-Hire Job Portal</h3>
+                                        <p>Advanced job platform</p>
+                                        <button class="btn btn-outline-light">View Details</button>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="card-body">
+                                        <h3>Smart-Hire Job Portal</h3>
+                                        <ul class="project-details">
+                                            <li><strong>Tech Stack:</strong> React, Node.js,Express MongoDB</li>
+                                            <li><strong>Duration:</strong> 1 months</li>
+                                            <li><strong>Features:</strong> Real-time chat, Job matching, Resume builder</li>
+                                        </ul>
+                                        <p style="text-align:justify">Smart-Hire is a job portal app that streamlines hiring for job seekers and recruiters. Job seekers can create profiles, upload resumes, and track applications, while recruiters can post jobs, filter candidates, and update hiring status. Features include advanced job search filters, secure authentication, JWT security, and a backend powered by Express.js and MongoDB for efficient data management.</p>
+                                        <a href="" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Visit Project</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section" data-aos="fade-up">
+            <div class="container">
+                <h2>Education</h2>
+                <div class="text-center">
+                    <h3 style="color:white">Electrical and Electronics Engineering</h3>
+                    <p>Jyothishmathi Institute of Technology and Science</p>
+                    <p>2021 - 2024 | GPA: 7.54/10.0</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section" data-aos="fade-up">
+            <div class="container">
+                <h2>Contact Me</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <form id="contactForm" onsubmit="handleSubmit(event)">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name" name="name" id="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Your Email" name="email" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="4" placeholder="Your Message" name="message" id="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                            <div id="formStatus" class="mt-3 text-center"></div>
+                        </form>
+                    </div>
+                    <div class="col-md-6 d-flex flex-column justify-content-center">
+                        <p class="mb-2"><i class="fas fa-envelope me-2"></i>thallapallyharshavardhan5@email.com</p>
+                        <p class="mb-2"><i class="fas fa-phone me-2"></i>+91 9014441572</p>
+                        <a href="/resume.pdf" download class="btn btn-outline-primary mt-3">
+                            Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="sociallinks">
+                    <a id="linkedin" href="https://linkedin.com"><i class="fab fa-linkedin"></i></a>
+                    <a id="git" href="https://github.com/Thallapally1461" target="_blank"><i class="fab fa-github"></i></a>
+                    <a id="twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+                    <a id="insta" href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>© 2025 Harshavardhan. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({ duration: 1000 });
+        
+        // Typing effect
+        const phrases = ["Full Stack Developer", "UI/UX Enthusiast"];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingTimeout;
+        
+        function typeText() {
+            const typingElement = document.getElementById('typing-text');
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typingTimeout = setTimeout(typeText, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typingTimeout = setTimeout(typeText, 500);
+            } else {
+                const speed = isDeleting ? 50 : 100;
+                typingTimeout = setTimeout(typeText, speed);
+            }
+        }
+        
+        // Start typing effect
+        document.addEventListener('DOMContentLoaded', function() {
+            typeText();
+        });
+        
+        // Navigation toggle
+        function toggleNav() {
+            const navbar = document.querySelector('.navbar');
+            const navCollapse = document.querySelector('.navbar-collapse');
+            const isExpanded = navbar.classList.contains('expanded');
+            
+            if (isExpanded) {
+                navbar.classList.remove('expanded');
+                navCollapse.classList.remove('show');
+            } else {
+                navbar.classList.add('expanded');
+                navCollapse.classList.add('show');
+            }
+        }
+        
+        function closeNav() {
+            const navbar = document.querySelector('.navbar');
+            const navCollapse = document.querySelector('.navbar-collapse');
+            navbar.classList.remove('expanded');
+            navCollapse.classList.remove('show');
+        }
+        
+        // Project card flip
+        function flipCard(card) {
+            const inner = card.querySelector('.card-inner');
+            inner.classList.toggle('flipped');
+        }
+        
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+            
+            console.log('Form submitted:', formData);
+            
+            const formStatus = document.getElementById('formStatus');
+            formStatus.textContent = 'Sending...';
+            formStatus.style.color = 'white';
+            
+            setTimeout(() => {
+                formStatus.textContent = 'Message sent successfully!';
+                formStatus.style.color = 'green';
+                
+                // Reset form
+                document.getElementById('contactForm').reset();
+                
+                setTimeout(() => {
+                    formStatus.textContent = '';
+                }, 3000);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
